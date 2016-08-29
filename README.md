@@ -5,4 +5,4 @@ After spending too much time organising my `gulpfile.js` and reorganising old ta
 In this repository I keep tasks that make my life easier, and that I often find myself using again and again. Being able to just drag and drop them is particularly sweet. Please feel free to contribute with tasks that you also find useful.  
 
 ## How does it work?
-'Gulpfile.js' loads all tasks in the task folder automatically, and tasks like `watch` load other tasks in their folders too. This way, just by dropping a task file in the tasks folder you can already run `gulp my-task` and it will work.
+`Gulpfile.js` loads all tasks in the task folder automatically, and tasks like `watch` load other tasks in their folders too. This way, just by dropping a task file in the tasks folder you can already run `gulp my-task` and it will work.
