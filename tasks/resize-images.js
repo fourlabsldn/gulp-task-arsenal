@@ -2,7 +2,7 @@
 // Resizes images to specified image widths
 // =============================================================================
 
-const taskName = 'resize-images';
+const taskName = require('path').parse(__filename).name;
 module.exports = taskName;
 
 const gulp = require('gulp');

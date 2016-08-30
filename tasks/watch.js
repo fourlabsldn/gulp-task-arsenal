@@ -1,8 +1,8 @@
-const taskName = 'watch';
+const taskName = require('path').parse(__filename).name;
 module.exports = taskName;
 
 // This task will start all tasks in this folder
-const folderToLoad = './watch';
+const folderToLoad = `./${taskName}`;
 
 const gulp = require('gulp');
 const requireFolder = require('require-dir-all');

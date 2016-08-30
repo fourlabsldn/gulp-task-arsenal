@@ -2,7 +2,7 @@
 // Transpile ES7 code into ES5. Includes support for async await.
 // ============================================================================
 
-const taskName = 'transpile';
+const taskName = require('path').parse(__filename).name;
 module.exports = taskName;
 
 const gulp = require('gulp');
