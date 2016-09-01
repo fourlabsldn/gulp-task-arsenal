@@ -11,13 +11,20 @@ const babel = require('rollup-plugin-babel');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const rollup = require('gulp-rollup');
+const foreach = require('gulp-foreach');
 const paths = require('./paths.json');
 
-const origin = paths.js.src;
-const destiny = paths.js.dist;
+const origin = paths.es6.src; // Globbing, one or multiple files
+const destiny = paths.es6.dist; // Folder
 
 gulp.task(taskName, () => {
-	gulp.src(origin)
+	return gulp.src(origin)
+	.pipe(foreach(doTranspilation))
+	.pipe(gulp.dest(destiny));
+});
+
+function doTranspilation(stream) {
+	return stream
 	.pipe(sourcemaps.init())
 	.pipe(rollup({
 		// Function names leak to the global namespace. To avoid that,
@@ -37,6 +44,5 @@ gulp.task(taskName, () => {
 			}),
 		],
 	}))
-	.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(destiny));
-});
+	.pipe(sourcemaps.write('.'));
+}
