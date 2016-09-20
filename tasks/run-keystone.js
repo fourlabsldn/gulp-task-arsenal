@@ -1,8 +1,7 @@
 const gulp = require('gulp');
-const depLinker = require('dep-linker');
-
+const shell = require('gulp-shell');
 const organiser = require('gulp-organiser');
 
 module.exports = organiser.register((task) => {
-  gulp.task(task.name, () => depLinker.linkDependenciesTo(task.dest));
+  gulp.task(task.name, shell.task('node keystone.js'));
 });

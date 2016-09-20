@@ -1,8 +1,7 @@
-const taskName = require('path').parse(__filename).name;
-module.exports = taskName;
-
 const gulp = require('gulp');
-const paths = require('../paths.json');
-const origin = paths.styles.src;
 const sass = require('../sass');
-gulp.task(taskName, () => gulp.watch(origin, [sass]));
+const organiser = require('gulp-organiser');
+
+module.exports = organiser.register((task) => {
+  gulp.task(task.name, () => gulp.watch(sass.src, [sass.name]));
+});

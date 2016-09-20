@@ -1,12 +1,9 @@
-const taskName = require('path').parse(__filename).name;
-module.exports = taskName;
-
 // This task will start all tasks in this folder
-const folderToLoad = `./${taskName}`;
-
 const gulp = require('gulp');
-const requireFolder = require('require-dir-all');
-const tasksObject = requireFolder(folderToLoad);
-const watchTasks = Object.keys(tasksObject).map(k => tasksObject[k]);
+const organiser = require('gulp-organiser');
 
-gulp.task(taskName, watchTasks);
+module.exports = organiser.register((task) => {
+  const watchTasks = organiser.loadFrom(`./${task.name}`);
+  const watchTaskNames = watchTasks.map(t => t.name);
+  gulp.task(task.name, watchTaskNames);
+});
