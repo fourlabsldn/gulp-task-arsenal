@@ -6,6 +6,10 @@ const path = require('path');
 const browserSync = require('browser-sync').create();
 const organiser = require('gulp-organiser');
 
+
+const DEFAULTS = {
+  startPath: '/example'
+}
 module.exports = organiser.register((task, allTasks) => {
   const { name, reloadOn } = task;
 
@@ -15,7 +19,7 @@ module.exports = organiser.register((task, allTasks) => {
       server: {
         baseDir: './',
       },
-      startPath: '/example',
+      startPath: task.startPath || DEFAULTS.startPath,
     });
 
     const tasksToReloadOn = reloadOn.map(tName => allTasks.find(t => t.name === tName));

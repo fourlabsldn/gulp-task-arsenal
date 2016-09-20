@@ -1,12 +1,6 @@
 // List all available tasks
 const organiser = require('gulp-organiser');
 organiser.registerAll('./tasks', {
-	'src': [
-		'./models/**/*.js',
-		'./routes/**/*.js',
-		'keystone.js',
-		'package.json'
-	],
 	'sass': {
 		'src': './public_src/styles/**/*.scss',
 		'dest': './public/styles/'
@@ -26,5 +20,10 @@ organiser.registerAll('./tasks', {
 	},
 	'link-dependencies': {
 		'dest': './public/js'
-	}
+	},
+  'browser-sync': {
+    src: '.', // it doesn't matter, it's just so the task object is not ignored.
+    reloadOn: ['transpile-react'],
+    startPath: 'examples/index.html'
+  },
 });
