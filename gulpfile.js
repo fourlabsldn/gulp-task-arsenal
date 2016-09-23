@@ -24,6 +24,7 @@ organiser.registerAll('./tasks', {
   'browser-sync': {
     src: '.', // it doesn't matter, it's just so the task object is not ignored.
     reloadOn: ['transpile-react'],
-    startPath: 'examples/index.html'
+    startPath: 'example',
+    baseDir: './',
   },
 });

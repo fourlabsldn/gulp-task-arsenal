@@ -6,24 +6,27 @@ const path = require('path');
 const browserSync = require('browser-sync').create();
 const organiser = require('gulp-organiser');
 
-
 const DEFAULTS = {
-  startPath: '/example'
-}
+  startPath: 'example',
+  baseDir: './',
+};
+
 module.exports = organiser.register((task, allTasks) => {
   const { name, reloadOn } = task;
-
+  const startPath = task.startPath || DEFAULTS.startPath;
+  const baseDir = task.baseDir || DEFAULTS.baseDir;
   gulp.task(name, () => {
 
     browserSync.init({
-      server: {
-        baseDir: './',
-      },
-      startPath: task.startPath || DEFAULTS.startPath,
+      startPath,
+      server: { baseDir },
     });
 
-    const tasksToReloadOn = reloadOn.map(tName => allTasks.find(t => t.name === tName));
+    // Watch starter path
+    gulp.watch(path.join(baseDir, startPath)).on('change', browserSync.reload);
 
+    // Watch other tasks
+    const tasksToReloadOn = reloadOn.map(tName => allTasks.find(t => t.name === tName));
     tasksToReloadOn.forEach(t => {
       const globs = t.dest.map(dest => path.join(dest, '**/*'));
       console.log('Reloading on changes at:', globs);
