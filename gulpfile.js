@@ -27,4 +27,10 @@ organiser.registerAll('./tasks', {
     startPath: 'example',
     baseDir: './',
   },
+  'test-browser': {
+    src:'./tests/unit/unit.js',
+  },
+  'test-headless': {
+    src:'./tests/unit/unit.js',
+  }
 });
