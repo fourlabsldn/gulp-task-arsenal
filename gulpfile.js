@@ -32,5 +32,11 @@ organiser.registerAll('./tasks', {
   },
   'test-headless': {
     src:'./tests/unit/unit.js',
-  }
+  },
+  'build-elm': {
+    src: 'src/Main.elm',
+    dest: 'dist',
+    moduleName: 'ModalRouter',
+    ext: 'js',
+  },
 });
