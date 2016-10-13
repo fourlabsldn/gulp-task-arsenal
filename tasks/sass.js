@@ -1,3 +1,5 @@
+// npm install --save-dev gulp-sass gulp-postcss autoprefixer gulp-sourcemaps gulp-organiser
+
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
