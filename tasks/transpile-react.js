@@ -1,4 +1,4 @@
-// npm install --save-dev gulp path gulp-uglify vinyl-buffer gulp-flatmap rollup-stream rollup-plugin-babel vinyl-source-stream gulp-sourcemaps rollup-plugin-replace rollup-plugin-commonjs rollup-plugin-node-resolve gulp-organiser lodash babel-preset-es2015-rollup babel-preset-react babel-plugin-transform-async-to-generator babel-plugin-external-helpers-2
+// npm install --save-dev gulp path gulp-uglify vinyl-buffer gulp-flatmap rollup-stream rollup-plugin-babel vinyl-source-stream gulp-sourcemaps rollup-plugin-replace rollup-plugin-commonjs rollup-plugin-node-resolve gulp-organiser lodash  babel-preset-react
 
 /**
   Hidden dependencies:
@@ -42,8 +42,7 @@ const DEFAULT_CONFIG = {
     babel({
       exclude: 'node_modules/**',
       babelrc: false,
-      plugins: ['transform-async-to-generator', 'external-helpers-2'],
-      presets: ['es2015-rollup', 'react'],
+      presets: ['es2017'],
     }),
     // TODO: Change this from 'development' to 'production' during production
     replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
