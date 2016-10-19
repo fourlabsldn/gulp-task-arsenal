@@ -1,18 +1,10 @@
-// npm install --save-dev gulp path gulp-uglify vinyl-buffer gulp-flatmap rollup-stream rollup-plugin-babel vinyl-source-stream gulp-sourcemaps rollup-plugin-replace rollup-plugin-commonjs rollup-plugin-node-resolve gulp-organiser lodash babel-preset-es2017 babel-preset-es2015-rollup
-/**
-  Hidden dependencies:
-    babel-plugin-lodash
-    babel-preset-es2017
-  	babel-plugin-transform-async-to-generator
-  	babel-plugin-external-helpers-2
- */
+// npm install --save-dev gulp path vinyl-buffer gulp-flatmap rollup-stream rollup-plugin-babel vinyl-source-stream gulp-sourcemaps rollup-plugin-replace rollup-plugin-commonjs rollup-plugin-node-resolve gulp-organiser lodash babel-preset-es2017 babel-preset-es2015-rollup
 
 // ============================================================================
 // Transpile ES7 react code into ES5. Includes support for async await.
 // ============================================================================
 const gulp = require('gulp');
 const path = require('path');
-const uglify = require('gulp-uglify');
 const buffer = require('vinyl-buffer');
 const flatmap = require('gulp-flatmap');
 const rollup = require('rollup-stream');
@@ -60,7 +52,6 @@ const doTranspilation = curry((rollupConfig, stream, file) => {
 	.pipe(sourcemaps.init({ loadMaps: true }))
 	// Further modify the file here if needed
 
-  // .pipe(uglify())
 	// write the sourcemap alongside the output file.
 	.pipe(sourcemaps.write('.'));
 });
