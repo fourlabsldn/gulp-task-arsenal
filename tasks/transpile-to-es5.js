@@ -1,4 +1,4 @@
-// npm install --save-dev gulp path gulp-uglify vinyl-buffer gulp-flatmap rollup-stream rollup-plugin-babel vinyl-source-stream gulp-sourcemaps rollup-plugin-replace rollup-plugin-commonjs rollup-plugin-node-resolve gulp-organiser lodash babel-preset-es2017 babel-plugin-transform-async-to-generator babel-plugin-external-helpers-2
+// npm install --save-dev gulp path gulp-uglify vinyl-buffer gulp-flatmap rollup-stream rollup-plugin-babel vinyl-source-stream gulp-sourcemaps rollup-plugin-replace rollup-plugin-commonjs rollup-plugin-node-resolve gulp-organiser lodash babel-preset-es2017 babel-preset-es2015-rollup
 /**
   Hidden dependencies:
     babel-plugin-lodash
@@ -42,7 +42,7 @@ const DEFAULT_CONFIG = {
       exclude: 'node_modules/**',
       babelrc: false,
       plugins: ['lodash'],
-      presets: ['es2017'],
+      presets: ['es2015-rollup', 'es2017'],
     }),
   ],
 };
