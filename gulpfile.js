@@ -48,4 +48,8 @@ organiser.registerAll('./tasks', {
     moduleName: 'ModalRouter',
     ext: 'js',
   },
+  'build': {
+    src: './',
+    tasks: ['link-dependencies', 'modify-timekit-booking', 'transpile-to-es5', 'concat'],
+  },
 });
