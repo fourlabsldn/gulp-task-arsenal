@@ -52,4 +52,17 @@ organiser.registerAll('./tasks', {
     src: './',
     tasks: ['link-dependencies', 'modify-timekit-booking', 'transpile-to-es5', 'concat'],
   },
+  'karma-test': {
+    src: [
+      // Libraries
+      'http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+      './dist/fl-booking.js',
+      // Mockups
+      './examples/fake-events-creator.js',
+      // Test files
+      './tests/*-spec.js',
+    ],
+    // Whether to close the browser after the tests or not.
+    singleRun: false,
+  },
 });
