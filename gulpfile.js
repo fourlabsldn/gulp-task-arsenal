@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 // List all available tasks
 
 const src = 'src';
@@ -5,8 +6,8 @@ const dest = 'dist';
 const path = require('path');
 
 const organiser = require('gulp-organiser');
-organiser.registerAll('./tasks', {
-  sass: {
+organiser.registerAll('./gulp-tasks', {
+  'sass': {
     src: path.join(src, 'styles/**/*.scss'),
     dest: path.join(dest, 'styles'),
   },
