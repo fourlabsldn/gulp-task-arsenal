@@ -70,4 +70,8 @@ organiser.registerAll('./gulp-tasks', {
     // Whether to close the browser after the tests or not.
     singleRun: false,
   },
+  'run-cmd': {
+    src: '.',
+    cmd: 'flow',
+  },
 });
