@@ -16,6 +16,7 @@ const replace = require('rollup-plugin-replace');
 const commonjs = require('rollup-plugin-commonjs');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const organiser = require('gulp-organiser');
+const rename = require('gulp-rename');
 const { curry } = require('lodash/fp');
 
 const DEFAULT_CONFIG = {
@@ -40,9 +41,10 @@ const DEFAULT_CONFIG = {
   ],
 };
 
-const doTranspilation = curry((rollupConfig, stream, file) => {
+const doTranspilation = curry((task, stream, file) => {
   const fileName = path.parse(file.path).base;
-  const config = Object.assign({ entry: file.path }, DEFAULT_CONFIG, rollupConfig);
+  const config = Object.assign({ entry: file.path }, DEFAULT_CONFIG, task.config);
+  const outputName = task.rename || fileName;
 
   return rollup(config)
 	// point to the entry file.
@@ -52,7 +54,7 @@ const doTranspilation = curry((rollupConfig, stream, file) => {
 	// tell gulp-sourcemaps to load the inline sourcemap produced by rollup-stream.
 	.pipe(sourcemaps.init({ loadMaps: true }))
 	// Further modify the file here if needed
-
+  .pipe(rename(outputName))
   // Convert to es3 syntax
   .pipe(es3ify())
 	// write the sourcemap alongside the output file.
@@ -61,11 +63,9 @@ const doTranspilation = curry((rollupConfig, stream, file) => {
 
 // Path resolution for these modules must be included in the pages' require.config
 module.exports = organiser.register((task) => {
-  const rollupConfig = task.config;
-
   gulp.task(task.name, () => {
     return gulp.src(task.src)
-    .pipe(flatmap(doTranspilation(rollupConfig))) // call doTranspilation for each file
+    .pipe(flatmap(doTranspilation(task))) // call doTranspilation for each file
     .pipe(gulp.dest(task.dest));
   });
 });

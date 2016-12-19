@@ -7,6 +7,10 @@ const path = require('path');
 
 const organiser = require('gulp-organiser');
 organiser.registerAll('./gulp-tasks', {
+  'watch': {
+    src: '.',
+    taskNames: ['sass'],
+  },
   'sass': {
     src: path.join(src, 'styles/**/*.scss'),
     dest: path.join(dest, 'styles'),
