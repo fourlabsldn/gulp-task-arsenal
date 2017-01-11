@@ -2,18 +2,14 @@
 const gulp = require('gulp');
 const organiser = require('gulp-organiser');
 
-const subTaskName = mainTask => t => `${mainTask.name}:${t.tasks[0].name}`;
-
-
 module.exports = organiser.register((task, allTasks) => {
-  const watchTaskName = subTaskName(task);
+  gulp.task(task.name, () => {
+    allTasks.forEach(t => {
+      const watchTargets = t.tasks
+        .map(aTask => aTask.watch || aTask.src)
+        .reduce((acc, files) => acc.concat(files), []);
 
-  allTasks.forEach(t => {
-    gulp.task(watchTaskName(t), () => {
-      gulp.watch(t.tasks[0].watch || t.tasks[0].src, [t.name]);
-      console.log(`watching ${t.tasks[0].name}`);
+      gulp.watch(watchTargets, [t.name]);
     });
   });
-
-  gulp.task(task.name, allTasks.map(watchTaskName));
 });
